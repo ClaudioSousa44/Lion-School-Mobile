@@ -3,7 +3,7 @@ package com.example.myapplication
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Card
+import androidx.compose.material.Icon
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -101,9 +101,38 @@ fun FooterShape(){
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(96.dp)
-                    .background(Color(51, 71, 176))
+                    .background(Color(51, 71, 176)),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
 
             ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.youtube),
+                    contentDescription = "",
+                    modifier = Modifier.width(56.67.dp),
+                    tint = Color.White
+                )
+                Spacer(modifier = Modifier.width(25.dp))
+                Icon(
+                    painter = painterResource(id = R.drawable.twitter),
+                    contentDescription = "",
+                    modifier = Modifier.width(56.67.dp),
+                    tint = Color.White
+                )
+                Spacer(modifier = Modifier.width(25.dp))
+                Icon(
+                    painter = painterResource(id = R.drawable.instagram),
+                    contentDescription = "",
+                    modifier = Modifier.width(56.67.dp),
+                    tint = Color.White
+                )
+                Spacer(modifier = Modifier.width(25.dp))
+                Icon(
+                    painter = painterResource(id = R.drawable.facebook),
+                    contentDescription = "",
+                    modifier = Modifier.width(56.67.dp),
+                    tint = Color.White
+                )
 
             }
         }

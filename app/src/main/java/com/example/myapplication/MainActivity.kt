@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -39,6 +41,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting() {
+    val context = LocalContext.current
     Column(
         modifier =
         Modifier.background(Color(51,71,176))
@@ -50,7 +53,10 @@ fun Greeting() {
             horizontalArrangement = Arrangement.End
         ) {
             Button(
-                onClick = { },
+                onClick = {
+                          var openCurses = Intent(context, CursesActivityy::class.java)
+                    context.startActivity(openCurses)
+                },
                 colors = ButtonDefaults.buttonColors(Color(229,182,87)),
                 modifier = Modifier
                     .width(83.dp)

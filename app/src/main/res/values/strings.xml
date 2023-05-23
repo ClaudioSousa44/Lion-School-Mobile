@@ -4,4 +4,7 @@
     <string name="text_initial1">Discover the school of your dreams, where</string>
     <string name="text_initial2">knowledge comes to life and dreams </string>
     <string name="text_initial3">become reality!</string>
+    <string name="title_activity_curses_activityy">CursesActivityy</string>
+    <string name="find_your_curses">Find your course</string>
+    <string name="Curses">Courses</string>
 </resources>
