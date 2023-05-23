@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="start">Start</string>
+    <string name="text_initial1">Discover the school of your dreams, where</string>
+    <string name="text_initial2">knowledge comes to life and dreams </string>
+    <string name="text_initial3">become reality!</string>
+</resources>
