@@ -3,16 +3,20 @@ package com.example.myapplication
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -28,6 +32,7 @@ import com.example.myapplication.ui.theme.MyApplicationTheme
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import coil.compose.AsyncImage
 
 class CursesActivityy : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -116,7 +121,42 @@ fun CursesScreen() {
 
         LazyColumn(){
             items(listCourses){
-                Text(text = it.nome)
+                Card(
+                    modifier = Modifier
+                        .height(129.dp)
+                        .width(327.dp),
+                        backgroundColor = Color(51, 71, 176)
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(
+                            text = it.nome,
+                            color = Color.White
+                        )
+
+                        Row() {
+                            AsyncImage(
+                                model = it.icone,
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .clip(shape = CircleShape)
+                                    .width(50.dp)
+
+                                )
+
+                            Text(
+                                text = it.sigla,
+                                color = Color(229,182,87),
+                                fontSize = 24.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+
+                        }
+                    }
+
+                    
+                }
             }
         }
 
