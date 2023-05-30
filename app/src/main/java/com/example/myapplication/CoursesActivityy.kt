@@ -78,7 +78,8 @@ fun CursesScreen() {
     })
     Column(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.SpaceBetween
+        verticalArrangement = Arrangement.SpaceBetween,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         HeaderShape()
 
@@ -117,50 +118,54 @@ fun CursesScreen() {
                 fontWeight = FontWeight.Bold,
                 fontSize = 32.sp
             )
+
         }
 
-        LazyColumn(){
-            items(listCourses){
-                Card(
-                    modifier = Modifier
-                        .height(129.dp)
-                        .width(327.dp),
-                        backgroundColor = Color(51, 71, 176)
-                ) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally
+            LazyColumn(){
+                items(listCourses){
+                    Card(
+                        modifier = Modifier
+                            .height(129.dp)
+                            .width(327.dp),
+                        backgroundColor = Color(51, 71, 176),
+                        shape = RoundedCornerShape(20.dp)
                     ) {
-                        Text(
-                            text = it.nome,
-                            color = Color.White
-                        )
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = it.nome,
+                                color = Color.White
+                            )
+                            Spacer(modifier = Modifier.height(32.dp))
 
-                        Row() {
-                            AsyncImage(
-                                model = it.icone,
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .clip(shape = CircleShape)
-                                    .width(50.dp)
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                AsyncImage(
+                                    model = it.icone,
+                                    contentDescription = null,
+                                    modifier = Modifier
+                                        .clip(shape = CircleShape)
+                                        .width(50.dp)
 
                                 )
+                                Spacer(modifier = Modifier.width(80.dp))
 
-                            Text(
-                                text = it.sigla,
-                                color = Color(229,182,87),
-                                fontSize = 24.sp,
-                                fontWeight = FontWeight.Bold
-                            )
+                                Text(
+                                    text = it.sigla,
+                                    color = Color(229,182,87),
+                                    fontSize = 24.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+
+                            }
 
                         }
                     }
-
-                    
+                    Spacer(modifier = Modifier.height(30.dp))
                 }
             }
-        }
-
-
 
         FooterShape()
     }
