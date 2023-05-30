@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -18,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -54,6 +56,7 @@ class CursesActivityy : ComponentActivity() {
 
 @Composable
 fun CursesScreen() {
+    val context = LocalContext.current
     var listCourses by remember {
         mutableStateOf(listOf<Courses>())
     }
@@ -123,47 +126,55 @@ fun CursesScreen() {
 
             LazyColumn(){
                 items(listCourses){
-                    Card(
+                    Button(
+                        onClick = {
+                            var openStudents = Intent(context, StudentActivity::class.java)
+                            openStudents.putExtra("sigla", it.sigla)
+                            context.startActivity(openStudents)
+                        },
                         modifier = Modifier
                             .height(129.dp)
                             .width(327.dp),
-                        backgroundColor = Color(51, 71, 176),
-                        shape = RoundedCornerShape(20.dp)
+                        shape = RoundedCornerShape(20.dp),
+                        colors = ButtonDefaults.buttonColors(Color(51,71,176))
                     ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Text(
-                                text = it.nome,
-                                color = Color.White
-                            )
-                            Spacer(modifier = Modifier.height(32.dp))
 
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally
                             ) {
-                                AsyncImage(
-                                    model = it.icone,
-                                    contentDescription = null,
-                                    modifier = Modifier
-                                        .clip(shape = CircleShape)
-                                        .width(50.dp)
-
-                                )
-                                Spacer(modifier = Modifier.width(80.dp))
-
+                                Spacer(modifier = Modifier.height(10.dp))
                                 Text(
-                                    text = it.sigla,
-                                    color = Color(229,182,87),
-                                    fontSize = 24.sp,
-                                    fontWeight = FontWeight.Bold
+                                    text = it.nome,
+                                    color = Color.White
                                 )
+                                Spacer(modifier = Modifier.height(25.dp))
+
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    AsyncImage(
+                                        model = it.icone,
+                                        contentDescription = null,
+                                        modifier = Modifier
+                                            .clip(shape = CircleShape)
+                                            .width(80.dp)
+
+                                    )
+                                    Spacer(modifier = Modifier.width(80.dp))
+
+                                    Text(
+                                        text = it.sigla,
+                                        color = Color(229,182,87),
+                                        fontSize = 24.sp,
+                                        fontWeight = FontWeight.Bold
+                                    )
+
+                                }
 
                             }
-
-                        }
                     }
                     Spacer(modifier = Modifier.height(30.dp))
+
                 }
             }
 

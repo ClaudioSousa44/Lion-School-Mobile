@@ -57,6 +57,7 @@ fun Greeting() {
                           var openCurses = Intent(context, CursesActivityy::class.java)
                     context.startActivity(openCurses)
                 },
+
                 colors = ButtonDefaults.buttonColors(Color(229,182,87)),
                 modifier = Modifier
                     .width(83.dp)

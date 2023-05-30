@@ -7,4 +7,5 @@
     <string name="title_activity_curses_activityy">CursesActivityy</string>
     <string name="find_your_curses">Find your course</string>
     <string name="Curses">Courses</string>
+    <string name="title_activity_student">StudentActivity</string>
 </resources>
