@@ -19,4 +19,8 @@ class retrofitFactory{
         return  retrofitFactory.create(StudentService::class.java)
     }
 
+    fun getScoreAluno(): ScoreService{
+        return  retrofitFactory.create(ScoreService::class.java)
+    }
+
 }

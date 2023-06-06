@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -7,12 +8,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -48,6 +51,7 @@ class StudentActivity : ComponentActivity() {
 
 @Composable
 fun StudentScreen(sigla: String){
+    val context = LocalContext.current
 
     var listStudent by remember {
         mutableStateOf(listOf<Student>())
@@ -100,11 +104,16 @@ fun StudentScreen(sigla: String){
             LazyColumn(){
                 items(listStudent){
                     Button(
-                        onClick = { /*TODO*/ },
+                        onClick = {
+                                  var openScore = Intent(context, ScoreActivity::class.java)
+                                    openScore.putExtra("numeroMatricula", it.matricula)
+                                    context.startActivity(openScore)
+                                  },
                         modifier = Modifier
                             .height(129.dp)
                             .width(327.dp),
-                        colors = ButtonDefaults.buttonColors(getColorStatus(it.status))
+                        colors = ButtonDefaults.buttonColors(getColorStatus(it.status)),
+                        shape = RoundedCornerShape(20.dp)
                     ) {
                         Row( verticalAlignment = Alignment.CenterVertically) {
                             AsyncImage(
