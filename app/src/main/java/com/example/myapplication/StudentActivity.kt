@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ToggleButton
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
@@ -56,6 +57,11 @@ fun StudentScreen(sigla: String){
     var listStudent by remember {
         mutableStateOf(listOf<Student>())
     }
+    var listStudent2 by remember {
+        mutableStateOf(listOf<Student>())
+    }
+
+    var list: List<Student>
     var name by remember {
         mutableStateOf("")
     }
@@ -68,6 +74,7 @@ fun StudentScreen(sigla: String){
             response: Response<StudentList>
         ) {
             listStudent = response.body()!!.aluno
+            listStudent2 = response.body()!!.aluno
 
             name = response.body()!!.NomeCurso
 
@@ -78,6 +85,7 @@ fun StudentScreen(sigla: String){
 
         }
     })
+
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -92,6 +100,42 @@ fun StudentScreen(sigla: String){
            , horizontalAlignment = Alignment.CenterHorizontally
 
         ) {
+            Row() {
+                Button(
+                    onClick = {
+                            list = listStudent
+                              listStudent2 = list
+                    },
+                    colors = ButtonDefaults.buttonColors(Color(51,71,176))
+                ) {
+                    Text(
+                        text = "Todos",
+                        color = Color.White
+                    )
+                }
+                Button(
+                    onClick = {
+                              listStudent2 = listStudent.filter { it.status == "Cursando" }
+                    },
+                    colors = ButtonDefaults.buttonColors(Color(51,71,176))
+                ) {
+                    Text(
+                        text = "Cursando",
+                        color = Color.White
+                    )
+                }
+                Button(
+                    onClick = {
+                              listStudent2 = listStudent.filter { it.status == "Finalizado" }
+                    },
+                    colors = ButtonDefaults.buttonColors(Color(51,71,176))
+                ) {
+                    Text(
+                        text = "Finalizado",
+                        color = Color.White
+                    )
+                }
+            }
         Text(
             text = name,
             fontSize = 32.sp,
@@ -102,7 +146,7 @@ fun StudentScreen(sigla: String){
             Spacer(modifier = Modifier.height(20.dp))
 
             LazyColumn(){
-                items(listStudent){
+                items(listStudent2){
                     Button(
                         onClick = {
                                   var openScore = Intent(context, ScoreActivity::class.java)
