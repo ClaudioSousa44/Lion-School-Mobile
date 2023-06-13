@@ -119,7 +119,8 @@ fun ScoreScreen(matricula: String){
                 Card(
                     modifier = Modifier
                         .height(340.dp)
-                        .width(256.dp)
+                        .width(256.dp),
+                    shape = RoundedCornerShape(10.dp)
                 ) {
                     LazyColumn(
                         modifier = Modifier.fillMaxSize(),

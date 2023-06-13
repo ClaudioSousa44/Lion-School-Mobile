@@ -61,7 +61,7 @@ fun StudentScreen(sigla: String){
         mutableStateOf(listOf<Student>())
     }
 
-    var list: List<Student>
+
     var name by remember {
         mutableStateOf("")
     }
@@ -103,8 +103,8 @@ fun StudentScreen(sigla: String){
             Row() {
                 Button(
                     onClick = {
-                            list = listStudent
-                              listStudent2 = list
+
+                              listStudent2 = listStudent
                     },
                     colors = ButtonDefaults.buttonColors(Color(51,71,176))
                 ) {
