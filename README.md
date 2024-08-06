@@ -9,7 +9,8 @@ Objetivo deste projeto é colocar em prática os conhecimentos, sobre desenvolvi
 ## Tecnologias utilizadas
 - Kotlin ( Jetpack Compose )
 - Node.js
-- 
+
+  
 ---
 ## Autor 
 - [Claudio Sousa](https://github.com/ClaudioSousa44)
